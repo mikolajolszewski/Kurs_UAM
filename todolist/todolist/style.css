@@ -1,0 +1,7 @@
+#listWrapper {width:600;margin:auto;padding:auto;text-align:center}
+ul {list-style:none;padding:0;margin:20px 0 0 0}
+li {padding:5px 0}
+input {height:20px;with:150px;border:1px #cbcbcb solid}
+.add, .delete{display:inline-block;height:20px;text-align:center;line-height:20px;cursor:pointer;padding:0 5px;color:#fff}
+.add {border:1px #72911D solid;background:#91BA22;}
+.delete {border:1px #851313 solid;background:#AD1717;}
