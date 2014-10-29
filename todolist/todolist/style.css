@@ -1,7 +1,11 @@
-#listWrapper {width:600;margin:auto;padding:auto;text-align:center}
-ul {list-style:none;padding:0;margin:20px 0 0 0}
-li {padding:5px 0}
-input {height:20px;with:150px;border:1px #cbcbcb solid}
-.add, .delete{display:inline-block;height:20px;text-align:center;line-height:20px;cursor:pointer;padding:0 5px;color:#fff}
-.add {border:1px #72911D solid;background:#91BA22;}
-.delete {border:1px #851313 solid;background:#AD1717;}
+body{background:#363A3B;font-family:Verdana;font-size:12px;}
+h1{color:#fff;text-transform:uppercase;font-size:20px;text-align:center;}
+#listWrapper {width:400px;margin:auto;padding:auto;}
+ul {list-style:none;padding:0;margin:0}
+li {padding-left:10px;backgroud:#77AB59;height:30px;line-height:30px;background:#F0F7DA;border-top:1px #000 solid;transition: background 0.5s;}
+li:hover {background: #C9DF8A;cursor:pointer;}
+input {height:30px;width:350px;margin:0px;border:0px;font-size:12px;font-family:Verdana;padding: 0 10px;}
+input:focus{outline:none}
+.add, .delete{display:block;height:30px;text-align:center;line-height:30px;width:50px;cursor:pointer;padding:0;color:#fff;float:right}
+.add {background:#91BA22;}
+.delete {background:#AD1717;}
