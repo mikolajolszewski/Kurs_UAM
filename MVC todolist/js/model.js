@@ -21,37 +21,58 @@ Model.prototype.notifyController = function () {
 
 // Function pushing todos to the list
 Model.prototype.addTodo = function ( todo ) {
-  this.todosArray.push({todo:todo, done: 0});
-  this.recountStats();
-  this.notifyController();
+  if (utils.getObjectIndex(this.todosArray, todo, "todo") === -1) {
+    this.todosArray.push({todo:todo, done: 0});
+    this.recountStats();
+    this.notifyController();
+  } else {
+    alert("Nie możesz dodać drugiego takiego samego zadania.");
+  }
 };
 
 // Function marking item as done
 Model.prototype.markDone = function ( todo ) {
-  index = utils.getObjectIndex(this.todosArray,todo,'todo');
+  var index = utils.getObjectIndex(this.todosArray,todo,'todo');
   this.todosArray[index].done = 1;
   this.recountStats();
   this.emit("updateFooter");
 };
 
 // Get todo list
-Model.prototype.getData = function(){
+Model.prototype.getData = function() {
   return this.todosArray;
 };
 
 // Get list statistics
-Model.prototype.getStats = function(){
+Model.prototype.getStats = function() {
   return this.statistics;
 };
 
 // Recount statistics basing on todo list
-Model.prototype.recountStats = function(){
+Model.prototype.recountStats = function() {
   this.statistics.total = this.todosArray.length;
   this.statistics.done = utils.getObjectFrequency(this.todosArray,1,'done');
   this.statistics.left = this.statistics.total - this.statistics.done;
 };
+/*
+// GET elements stored on the server
+Model.prototype.getElementsFromServer = function() {
+  httpRequest.onreadystatechange = function () {
+	if (httpRequest.readyState !== 4 ) {
+		return;
+	}
+	if (httpRequest.status !== 200) {
+		throw new Error('Request failed');
+	}
+	var data = JSON.decode(httpRequest.responseText);
+	this.todosArray = data;
+}
+
+httpRequest.open('GET', '/todos/all');
+httpRequest.send();
+}
 
 
 
-
+*/
 
