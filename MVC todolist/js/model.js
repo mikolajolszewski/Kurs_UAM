@@ -1,4 +1,4 @@
-Model = function () {
+UAM.Model = function () {
   UAM.EventEmitter.call(this);
 
   // Define data structures to store todos and statistics for the footer
@@ -11,17 +11,17 @@ Model = function () {
 };
 
 // Inherit on and emit methods
-utils.inherits(UAM.EventEmitter, Model);
+UAM.utils.inherits(UAM.EventEmitter, UAM.Model);
 
 // Notify contriller to refresh footer and todo list
-Model.prototype.notifyController = function () {
+UAM.Model.prototype.notifyController = function () {
   this.emit("updateView");
   this.emit("updateFooter");
 };
 
 // Function pushing todos to the list
-Model.prototype.addTodo = function ( todo ) {
-  if (utils.getObjectIndex(this.todosArray, todo, "todo") === -1) {
+UAM.Model.prototype.addTodo = function ( todo ) {
+  if (UAM.utils.getObjectIndex(this.todosArray, todo, "todo") === -1) {
     this.todosArray.push({todo:todo, done: 0});
     this.recountStats();
     this.notifyController();
@@ -31,27 +31,27 @@ Model.prototype.addTodo = function ( todo ) {
 };
 
 // Function marking item as done
-Model.prototype.markDone = function ( todo ) {
-  var index = utils.getObjectIndex(this.todosArray,todo,'todo');
+UAM.Model.prototype.markDone = function ( todo ) {
+  var index = UAM.utils.getObjectIndex(this.todosArray,todo,'todo');
   this.todosArray[index].done = 1;
   this.recountStats();
   this.emit("updateFooter");
 };
 
 // Get todo list
-Model.prototype.getData = function() {
+UAM.Model.prototype.getData = function() {
   return this.todosArray;
 };
 
 // Get list statistics
-Model.prototype.getStats = function() {
+UAM.Model.prototype.getStats = function() {
   return this.statistics;
 };
 
 // Recount statistics basing on todo list
-Model.prototype.recountStats = function() {
+UAM.Model.prototype.recountStats = function() {
   this.statistics.total = this.todosArray.length;
-  this.statistics.done = utils.getObjectFrequency(this.todosArray,1,'done');
+  this.statistics.done = UAM.utils.getObjectFrequency(this.todosArray,1,'done');
   this.statistics.left = this.statistics.total - this.statistics.done;
 };
 /*

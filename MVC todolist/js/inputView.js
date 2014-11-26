@@ -1,4 +1,4 @@
-inputView = function (container) {
+UAM.inputView = function (container) {
   this.input = container.querySelector('#newtodo');
   this.button = container.querySelector('#add');
 
@@ -6,10 +6,10 @@ inputView = function (container) {
   this.attachActions();
 }
 
-utils.inherits(UAM.EventEmitter, inputView);
+UAM.utils.inherits(UAM.EventEmitter, UAM.inputView);
 
 // Function informing controller to add new value to the model
-inputView.prototype.addElement = function () {
+UAM.inputView.prototype.addElement = function () {
   var todo = this.input.value;
   if (todo) {
     this.emit('addItem', todo);
@@ -18,7 +18,7 @@ inputView.prototype.addElement = function () {
 };
 
 // Bind button click with function adding element
-inputView.prototype.attachActions = function () {
+UAM.inputView.prototype.attachActions = function () {
   var that = this;
   this.button.addEventListener('click', function () {
     that.addElement();

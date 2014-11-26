@@ -1,4 +1,4 @@
-var utils = {
+UAM.utils = {
   // Inherit prototype functions
 	inherits: function (Parent, Child) {
 		Child.prototype = Object.create(Parent.prototype);

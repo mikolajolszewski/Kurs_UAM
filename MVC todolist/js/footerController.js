@@ -1,4 +1,4 @@
-footerController = function (view, model) {
+UAM.footerController = function (view, model) {
 
   // Functions passed later to event emitters which inform model what to do
   var updateFooter = function () {

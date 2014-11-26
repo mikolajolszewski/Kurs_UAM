@@ -1,13 +1,13 @@
-listView = function (container) {
+UAM.listView = function (container) {
   this.list_item = container;
   UAM.EventEmitter.call(this);
   this.attachActions();
 };
 
-utils.inherits(UAM.EventEmitter, listView);
+UAM.utils.inherits(UAM.EventEmitter, UAM.listView);
 
 // Function updating view with current informations stored in the model
-listView.prototype.updateView = function (todos) {
+UAM.listView.prototype.updateView = function (todos) {
 
   var list = document.getElementById('list'), text = '';
 
@@ -29,13 +29,13 @@ listView.prototype.updateView = function (todos) {
 };
 
 // Function ran after list element is clicked
-listView.prototype.markSolvedElement = function (elem) {
+UAM.listView.prototype.markSolvedElement = function (elem) {
   elem.className = 'done';
   this.emit('markDone',elem.innerHTML);
 };
 
 // Bind button click with function adding element
-listView.prototype.attachActions = function () {
+UAM.listView.prototype.attachActions = function () {
   var that = this;
   this.list_item.addEventListener('click', function () {
     that.markSolvedElement(event.target);

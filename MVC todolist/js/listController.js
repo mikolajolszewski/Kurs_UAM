@@ -1,4 +1,4 @@
-listController = function (view, model) {
+UAM.listController = function (view, model) {
 
   // Functions passed later to event emitters which inform model what to do
   var updateView = function () {
