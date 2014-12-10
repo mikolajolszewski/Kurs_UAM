@@ -11,3 +11,6 @@ input:focus{outline:none}
 .delete {background:#AD1717;}
 .done{background:#91BA22;text-decoration: line-through;}
 .statistics{text-align:center;margin-top:10px;color:#fff;}
+.loading{width:100%;height:100%;background:#fff;opacity:0.9;position:absolute;top:0;left:0}
+.loading .loading-elements{margin-left:47%;margin-top:10%;width:100px;text-align:center;}
+.none{display:none}

@@ -23,6 +23,7 @@ UAM.Model.prototype.notifyController = function () {
 UAM.Model.prototype.addTodo = function ( todo ) {
   if (UAM.utils.getObjectIndex(this.todosArray, todo, "todo") === -1) {
     this.todosArray.push({todo:todo, done: 0});
+    UAM.utils.exectuteHttpRequest('/api/todos','POST',function (res) {}, this.todosArray);
     this.recountStats();
     this.notifyController();
   } else {
@@ -34,6 +35,7 @@ UAM.Model.prototype.addTodo = function ( todo ) {
 UAM.Model.prototype.markDone = function ( todo ) {
   var index = UAM.utils.getObjectIndex(this.todosArray,todo,'todo');
   this.todosArray[index].done = 1;
+  UAM.utils.exectuteHttpRequest('/api/todos','POST',function (res) {}, this.todosArray);
   this.recountStats();
   this.emit("updateFooter");
 };
@@ -54,25 +56,11 @@ UAM.Model.prototype.recountStats = function() {
   this.statistics.done = UAM.utils.getObjectFrequency(this.todosArray,1,'done');
   this.statistics.left = this.statistics.total - this.statistics.done;
 };
-/*
-// GET elements stored on the server
-Model.prototype.getElementsFromServer = function() {
-  httpRequest.onreadystatechange = function () {
-	if (httpRequest.readyState !== 4 ) {
-		return;
-	}
-	if (httpRequest.status !== 200) {
-		throw new Error('Request failed');
-	}
-	var data = JSON.decode(httpRequest.responseText);
-	this.todosArray = data;
-}
 
-httpRequest.open('GET', '/todos/all');
-httpRequest.send();
+UAM.Model.prototype.saveDataFromServer = function (res) {
+  this.todosArray = res;
+  this.notifyController();
 }
 
 
-
-*/
 
